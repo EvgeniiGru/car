@@ -1,0 +1,144 @@
+.low{
+    background: url("http://www.dejurka.ru/wp-content/uploads/2012/04/Texture-27.jpg") no-repeat;
+    background-size: 100%;
+}
+
+.indeationSlide
+{   
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    left: 0;
+    z-index: 15;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style-type: none;
+ 
+
+}
+.indecation{   
+    background: black;
+    border-style: solid;
+    border-radius: 100%;
+    border-color: black;
+    height: 1em;
+    width: 1em;
+    opacity: .5;
+    margin-left:10%;
+}
+.active{
+    background:#007bff;
+    border-color:#007bff;
+}
+
+
+.select{
+    
+}
+.car-image{
+    height: 200px;
+    width: 290px;
+    position: relative;
+}
+.carGroup{
+    height: 150px; 
+    overflow-y: scroll; 
+}
+
+.carGroup::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.carGroup::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.carGroup::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    height: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgba(22, 22, 22, 0.76);
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.buttonSlide{
+   background-color:gray; 
+   position: absolute;
+   top: 40%;
+   border-radius: 100%;
+   border-style: none;
+   height:40px;
+   width: 40px;
+   opacity: .5;
+   cursor: pointer;
+}
+
+.leftSide{
+    left: 20px;
+}
+
+.rightSide{
+    left: 260px;
+}
+
+.rightSide:hover {
+    background-color: #007bff;
+    opacity: .7;
+}
+
+
+.leftSide:hover {
+    background-color: #007bff;
+    opacity: .7;
+}
+
+.btnRemove{
+    background-color: transparent;
+    border-style: none;
+}
+
+.order{
+    height: 50px;
+    background-color: lightgreen;
+    display: inline-flex;
+}
+
+.modal{
+    display: block;
+}
+
+.phone-enter-active,.phone-leave-active{
+    transition:all .5s;
+}
+
+.phone-enter,.phone-leave-to{
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+
+.imgStyle-enter-active,.imageCar-leave-active{
+    transition:all .4s ease-out;
+}
+
+.imgStyle-enter,.imgStyle-leave-to{
+    transform: translateX(20px);
+    opacity: 0;
+}
+

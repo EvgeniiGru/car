@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = 'UTF-8'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="car.css">
+    <title>Work of vue</title>
+</head>
+
+<body class = "low" style="font-family:Jazz LET, fantasy;  letter-spacing: 0.2em;">
+    <div class = "container pt-5" id="app">
+        <div class = 'row'> 
+            <h1 >Car application</h1>
+        </div>
+        <div class = 'row'> 
+            <div class="col-md-4">
+                <div class="form-group"> 
+                    <label for="search"> Find your car</label>
+                    <input type="text"
+                     class='form-control'
+                      id="search" 
+                      placeholder="Name model..."
+                      v-model = "search">
+                </div>
+               <hr>
+            <ul class="list-group carGroup smooth-scroll">
+                <li 
+                v-for ="(car,index) in filterCar" 
+                class="list-group-item list-group-item-action cursor"
+                v-on:click = "selectCar(index)"
+                :class = "{'active': selectCarIndex === index}">
+                    {{car.name}} - {{car.model}}
+                </li>
+            </ul>
+            </div>  
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2 class="ml-3">{{car.name}}</h2>
+                        <div class = "col-md-12">
+                            <transition name = "imgStyle" mode = "out-in">
+                            <img v-bind:src="imageCar":key="imageCar" 
+                              v-bind:alt="car.name" 
+                              class="rounded car-image ">
+                            </transition>
+                            <button class = "buttonSlide leftSide" 
+                            v-if ="arrImageCar.length > 1"
+                            @click = "previousSlide()"><</button>
+                          
+                                    <ul class="indeationSlide">
+                                      <li v-for = "element in arrImageCar"  
+                                      :class="element === imageCar ? 'indecation active' : 'indecation'"></li>
+                                    </ul>
+                
+                            <button class="buttonSlide rightSide"
+                            v-if ="arrImageCar.length > 1"
+                            @click = "nextSlide()">></button>
+                         </div>
+                    </div>
+                    <div class="col-md-6 ml-5">
+                        <h2>Car ditails</h2>
+                        <ul>
+                            <li>Model: <strong>{{car.name}}</strong></li>
+                            <li>Year: <strong>{{car.year}}</strong></li>
+                            <li>Owner: <strong>{{car.owner}}</strong></li>
+                        </ul>
+                        <div style="height: 40px;">
+                            <transition name = "phone">
+                                  <p v-show="telephoneVisibility">{{car.phone}}</p>
+                            </transition>
+                        </div>       
+                        <button class="btn btn-outline-success mr-2" 
+                        @click= 'telephoneVisibility = !telephoneVisibility'
+                        v-text = "phoneBtText"></button>
+                        <button class="btn btn-primary"
+                        @click = "modalVisibility = true" 
+                        >Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="modal fade show" tabindex="-1" role="dialog"
+         v-if ="modalVisibility">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Do you want by car?</h5>
+                        <button type="button" 
+                        class="close"
+                         data-dismiss="modal"
+                          aria-label="Close"
+                          @click = "modalVisibility = false">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p> 
+                            <ul>
+                                <li>Model: <strong>{{car.name}}</strong></li>
+                                <li>Year: <strong>{{car.year}}</strong></li>
+                                <li>Owner: <strong>{{car.owner}}</strong></li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" 
+                        class="btn btn-outline-success"
+                        @click = "addOrderCars" >Buy</button>
+                        <button type="button" 
+                        class="btn btn-secondary" 
+                        data-dismiss="modal"
+                        @click = "modalVisibility = false" 
+                        >Close</button>
+                    </div>
+                </div>
+          </div>
+        </div>
+        <div v-if ="modalVisibility"
+         class="modal-backdrop fade show">
+        </div>
+        <div class="row mt-3">
+            <h3>Order:</h3>
+            <br>
+            <div v-for ="orderCar in orderCars" 
+                 class = "col-md-12 order">
+                <div class = "col-md-11 mt-3"><strong>Car: {{orderCar.name}} Model:{{orderCar.model}} Year:{{orderCar.year}}</strong></div>
+                <button class=" ml-2 btnRemove " @click = "removeOrderCars">[X]</button>
+            </div>
+        </div>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
+    <script src = "JsVue.js"></script>
+</body>
+
+</html>
